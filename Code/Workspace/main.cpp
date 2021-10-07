@@ -16,7 +16,7 @@ signed main(){
 	freopen("out.out", "w", stdout);
 #endif 
 	// ---
-	
+	printf("Hello World!\n");
 	// --- 
 	
 	return 0;
