@@ -1,0 +1,6 @@
+set cindent
+set ts=2
+set sw=2
+
+map <C-V> :!./compile.sh<CR>
+map <C-N> :!./run.sh<CR>
