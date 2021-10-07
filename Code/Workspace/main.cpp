@@ -16,7 +16,11 @@ signed main(){
 	freopen("out.out", "w", stdout);
 #endif 
 	// ---
-	printf("Hello World!\n");
+	int n = read();
+	for (int i = 1; i <= n; i ++ ){
+		printf("%d ", i);
+	}
+	puts("");
 	// --- 
 	
 	return 0;
