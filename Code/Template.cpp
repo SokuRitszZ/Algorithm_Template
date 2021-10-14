@@ -20,7 +20,8 @@ signed main(){
 	freopen("out.out", "w", stdout);
 #endif 
 	// ---
-	
+
+
 	// --- 
 	
 	return 0;
