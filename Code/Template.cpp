@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 
+#define MULTICASE() for (int _ = read(); _ -- ;)
+
 using namespace std;
+using i64 = long long;
+using cint = const int;
 
 inline int read(){
 	int x = 0, flg = 1; char ch = getchar();
