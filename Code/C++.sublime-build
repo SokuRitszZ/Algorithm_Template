@@ -1,0 +1,24 @@
+{
+	"path": "D:\\MinGW\\bin",
+	"cmd": ["g++", "-w", "${file_base_name}.cpp", "-o", "${file_base_name}", "-std=c++17", "-DLOCAL"],
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${file_path}",
+	"selector": "source.c, source.cpp",
+	"shell": true,
+	"variants":
+	[
+		{
+			"name": "Run in",
+			"cmd": ["${file_base_name}", "<", "in"],
+			"shell": true
+		},{
+			"name": "Reset",
+			"cmd": ["cp", "Template_${file_base_name}.cpp", "${file_base_name}.cpp"],
+			"shell": true
+		},{
+			"name": "Backup",
+			"cmd": ["cp", "${file_base_name}.cpp", "Backup.cpp"],
+			"shell": true
+		}
+	]
+}
