@@ -20,90 +20,86 @@ inline int read(){
   return x * flg;
 }
 
-CT int N = 1e4 + 10, M = 1e6 + 10;
+CT int N = 1e5 + 10, M = 1 << 14;
+
+int n, m, k, len;
+vector<int> nums;
+
+IL int lowbit(int x){
+  return x & -x;
+}
+
+IL int popcount(int x){
+  int res = 0;
+  while (x) x -= lowbit(x), ++ res;
+  return res;
+}
+
+int f[N], g[M], w[N];
+i6 ans[N];
 
 struct Query{
+  int i, l, r;
+  i6 res;
+}q[N];
+
+struct Range{
   int i, l, r, t;
 };
 
-struct Modify{
-  int k, c;
-};
-
-vector<Query> querys;
-vector<Modify> modifies;
-
-int cnt[M], ans[N];
-int res;
-
-IL void add(int x){
-  if (cnt[x] == 0) res ++ ;
-  cnt[x] ++ ;
-}
-
-IL void del(int x){
-  cnt[x] -- ;
-  if (cnt[x] == 0) res -- ;
-}
+vector<Range> ranges[N];
 
 signed main(){
+  cin.tie(0)->sync_with_stdio(0);
   // ----
-  int n = read(), m = read();
-  vector<int> a(n + 1), grp(n + 1);
+  cin >> n >> m >> k;
 
-  for (int i = 1; i <= n; i ++ ) a[i] = read();
+  for (int i = 0; i < 1 << 14; i ++ )
+    if (popcount(i) == k) nums.push_back(i);
+
+  for (int i = 1; i <= n; i ++ ){
+    cin >> w[i];
+    f[i] = g[w[i]];
+
+    for (int &x : nums) ++ g[w[i] xor x];
+  } 
   
-  modifies.push_back({0, 0});
+  for (int i = 0; i < m; i ++ ){
+    int l, r; cin >> l >> r;
+    q[i] = {i, l, r};
+  }
+  
+  len = sqrt(n);
+  sort(q, q + m, [&](Query a, Query b){
+    int ll = a.l / len, rr = b.l / len;
+    if (ll != rr) return ll < rr;
+    return a.r < b.r;
+  });
 
-  while (m -- ){
-    if (getchar() == 'Q'){
-      int l = read(), r = read();
-      querys.push_back({querys.size(), l, r, modifies.size() - 1});
-    }else {
-      int k = read(), c = read();
-      modifies.push_back({k, c});
-    }
+  for (int i = 0, L = 1, R = 0; i < m; i ++ ){
+    auto [id, l, r, res] = q[i];
+    if (R > r) ranges[L - 1].push_back({i, r + 1, R, 1});
+    while (R > r) q[i].res -= f[R -- ];
+    if (R < r) ranges[L - 1].push_back({i, R + 1, r, -1});
+    while (R < r) q[i].res += f[ ++ R];
+    if (L > l) ranges[R].push_back({i, l, L - 1, 1});
+    while (L > l) q[i].res -= f[ -- L];
+    if (L < l) ranges[R].push_back({i, L, l - 1, -1});
+    while (L < l) q[i].res += f[L ++ ]; 
   }
 
-  int len = sqrt(n);
+  memset(g, 0, sizeof g);
 
-  for (int i = 1; i <= n; i ++ ) grp[i] = i / len;
-
-  sort(querys.begin(), querys.end(), [&](Query a, Query b){
-    if (grp[a.l] != grp[b.l]) return grp[a.l] < grp[b.l];
-    if (grp[a.r] != grp[b.r]) return grp[a.r] < grp[b.r];
-    return a.t < b.t;
-  }); 
-
-  int t = 0, L = 1, R = 0;
-
-  for (auto [i, l, r, tt] : querys){
-    while (R < r) add(a[ ++ R]);
-    while (R > r) del(a[R -- ]);
-    while (L < l) del(a[L ++ ]);
-    while (L > l) add(a[ -- L]);
-    while (t < tt){
-      ++ t;
-      int k = modifies[t].k, &c = modifies[t].c;
-      if (L <= k and k <= R) {
-        del(a[k]);
-        add(c);
-      }
-      swap(a[k], c);
-    }
-    while (t > tt){
-      int k = modifies[t].k, &c = modifies[t].c;
-      if (L <= k and k <= R) {
-        del(a[k]);
-        add(c);
-      }
-      swap(a[k], c);
-      -- t;
-    }
-
-    ans[i] = res;
+  for (int i = 1; i <= n; i ++ ){
+    for (int &x : nums) ++ g[w[i] xor x];
+    for (auto [id, l, r, t] : ranges[i])
+      for (int j = l; j <= r; j ++ )
+        q[id].res += t * g[w[j]];
   }
+  
+  for (int i = 0; i < m; i ++ ) q[i].res += q[i - 1].res, ans[q[i].i] = q[i].res;
+  for (int i = 0; i < m; i ++ ) cout << ans[i] << endl;
 
-  for (int i = 0; i < querys.size(); i ++ ) cout << ans[i] << endl;
+  // ---- 
   return 0;
 }
