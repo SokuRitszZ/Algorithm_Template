@@ -79,7 +79,7 @@ void change(int l, int r, int c, int u = 1){
 }
 
 int get_sum(int l, int r, int pl, int pr, int add, int u = 1){
-	if (pl <= l and r <= pr) return tr[u].sum + (r - l + 1) * add;
+	if (pl <= l and r <= pr) return tr[u].sum + (r - l + 1) * add; 
 
 	int mid = l + r >> 1, res = 0;
 	add += tr[u].add;
