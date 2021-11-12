@@ -1,0 +1,8 @@
+*.exe
+main.cpp
+generator.cpp
+in
+check.cpp
+check.out
+backup.cpp
+.cph
