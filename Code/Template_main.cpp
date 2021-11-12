@@ -2,11 +2,8 @@
 
 #define CT const 
 #define IL inline
-#define PB emplace_back
-#define PP pop
-#define FT front
 #define endl '\n'
-#define MULTICASE() for (int _ = read(), kase = 0; kase ++ , _ --;)
+#define MULTICASE() int _, kase; for (cin >> _, kase = 0; kase ++ , _ --;)
 
 using namespace std;
 
@@ -22,6 +19,6 @@ inline int read(){
 
 signed main(){
 	cin.tie(0)->sync_with_stdio(0);
-	
+
   return 0;
 }
