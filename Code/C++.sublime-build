@@ -4,6 +4,7 @@
 	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 	"working_dir": "${file_path}",
 	"selector": "source.c, source.cpp",
+	"encoding": "cp936",
 	"shell": true,
 	"variants":
 	[
@@ -12,12 +13,16 @@
 			"cmd": ["${file_base_name}", "<", "in"],
 			"shell": true
 		},{
+			"name": "Run in cmd",
+			"shell_cmd": "start cmd /c \"\"${file_base_name}\" && pause\"",
+			"shell": true
+		},{
 			"name": "Reset",
-			"cmd": ["cp", "Template_${file_base_name}.cpp", "${file_base_name}.cpp"],
+			"cmd": ["copy", "Template_${file_base_name}.cpp", "${file_base_name}.cpp"],
 			"shell": true
 		},{
 			"name": "Backup",
-			"cmd": ["cp", "${file_base_name}.cpp", "Backup.cpp"],
+			"cmd": ["copy", "${file_base_name}.cpp", "Backup.cpp"],
 			"shell": true
 		}
 	]
