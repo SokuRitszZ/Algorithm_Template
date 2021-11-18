@@ -163,6 +163,5 @@ signed main(){
 	if (res == INF) res = -1;
 	printf("%d\n", res);
 
-
   return 0;
 }
