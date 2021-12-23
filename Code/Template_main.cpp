@@ -5,6 +5,8 @@
 #define endl '\n'
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegia(), x.rend()
+#define pb push_back
+#define eb emplace_back
 #define MULTICASE() int sokuritszz, kase; for (cin >> sokuritszz, kase = 0; kase ++ , sokuritszz --;)
 
 using namespace std;
