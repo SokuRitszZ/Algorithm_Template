@@ -10,6 +10,7 @@
 using namespace std;
 
 typedef long long i6;
+typedef pair<int, int> pii;
 
 signed main()
 { 
