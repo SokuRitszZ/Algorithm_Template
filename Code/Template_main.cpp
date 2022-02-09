@@ -1,21 +1,17 @@
 #include <iostream>
 
-#define CT const 
-#define IL inline
-#define endl '\n'
-#define all(x) x.begin(), x.end()
-#define rall(x) x.rbegia(), x.rend()
-#define pb push_back
-#define eb emplace_back
-#define MULTICASE() int sokuritszz, kase; for (cin >> sokuritszz, kase = 0; kase ++ , sokuritszz --;)
+//      Time: %$Time$% 
+//    Author: %$Author$% 
 
-using namespace std;
+#define all(x) x.begin(), x.end()
+#define MULTICASE() int sokuritszz, kase; for (std::cin >> sokuritszz, kase = 0; kase ++ , sokuritszz --;)
 
 typedef long long i6;
-typedef pair<int, int> pii;
+struct pii {int x, y; pii(int x = 0, int y = 0): x(x), y(y){}};
+bool operator < (const pii &a, const pii &b){return a.x == b.x ? a.y < b.y : a.x < b.x;}
 
 signed main()
-{ 
-  cin.tie(0)->sync_with_stdio(false); 
+{
+  std::cin.tie(0)->sync_with_stdio(false);
   return 0;
 }

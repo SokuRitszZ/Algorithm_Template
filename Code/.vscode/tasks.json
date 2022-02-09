@@ -1,45 +1,54 @@
 {
   "tasks": [
-  {
-    "type": "shell",
-    "label": "compile",
-    "command": "g++",
-    "args": [
-      "-w", 
-      "${fileBasename}",
-      "-o",
-      "${fileBasenameNoExtension}",
-      "-DLOCAL",
-    ],
-    "problemMatcher": []
-  },
-  {
-    "type": "shell",
-    "label": "prepare",
-    "command": "copy",
-    "args":[
-      "${workspaceFolder}\\Template_${fileBasenameNoExtension}.cpp",
-      "${workspaceFolder}\\${fileBasenameNoExtension}.cpp"
-    ],
-    "problemMatcher": []
-  },
-  {
-    "type": "shell",
-    "label": "backup",
-    "command": "copy",
-    "args": [
-      "${workspaceFolder}\\main.cpp",
-      "${workspaceFolder}\\backup.cpp"
-    ],
-    "problemMatcher": []
-  },
-  {
-    "type": "shell",
-    "label": "debug",
-    "command": "./${fileBasenameNoExtension}",
-    "problemMatcher": []
-  }
-    
+    {
+      "type": "shell",
+      "label": "compile",
+      "command": "g++",
+      "args": [
+        "-w",
+        "${fileBasename}",
+        "-o",
+        "${fileBasenameNoExtension}",
+        "-DLOCAL"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "reset",
+      "command": "./Copy_main",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "prepare",
+      "command": "copy",
+      "args": [
+        "${workspaceFolder}\\Template_${fileBasenameNoExtension}.cpp",
+        "${workspaceFolder}\\${fileBasenameNoExtension}.cpp"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "backup",
+      "command": "copy",
+      "args": [
+        "${workspaceFolder}\\main.cpp",
+        "${workspaceFolder}\\backup.cpp"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "debug",
+      "command": "./${fileBasenameNoExtension}",
+      "problemMatcher": []
+    }
   ],
   "version": "2.0.0"
 }

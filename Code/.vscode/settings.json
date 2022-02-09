@@ -3,6 +3,8 @@
   "files.associations": {
     "deque": "cpp",
     "vector": "cpp",
-    "xstring": "cpp"
+    "xstring": "cpp",
+    "iostream": "cpp",
+    "xiosbase": "cpp"
   }
 }
